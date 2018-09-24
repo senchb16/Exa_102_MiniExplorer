@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import javax.swing.AbstractListModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,6 +12,16 @@
  *
  * @author Christoph
  */
-public class FileBL {
-    
+public class FileBL extends AbstractListModel {
+    ArrayList<File> files = new ArrayList<File>();
+
+    @Override
+    public int getSize() {
+       return files.size();
+    }
+
+    @Override
+    public Object getElementAt(int i) {
+        return files.get(i);
+    }
 }
