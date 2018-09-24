@@ -12,9 +12,14 @@ import javax.swing.AbstractListModel;
  *
  * @author Christoph
  */
-public class FileBL extends AbstractListModel {
-    ArrayList<File> files = new ArrayList<File>();
-
+public class DateiBL extends AbstractListModel {
+    ArrayList<Datei> files = new ArrayList<Datei>();
+    
+    
+    public void add(Datei e){
+        files.add(e);
+        fireIntervalAdded(this, files.size()-1, files.size()-1);
+    }
     @Override
     public int getSize() {
        return files.size();

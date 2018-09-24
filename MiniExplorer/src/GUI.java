@@ -1,3 +1,6 @@
+
+import java.io.File;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +12,21 @@
  * @author Christoph
  */
 public class GUI extends javax.swing.JFrame {
-
+    DateiBL bl = new DateiBL();
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        this.liListe.setModel(bl);
+        File dir = new File(".");
+        
+        for (File f : dir.listFiles()) {
+           String name = f.getName();
+           int length = (int) f.length();
+           long modified = f.lastModified();
+           bl.add(new Datei(name,length,modified));
+        }
     }
 
     /**
@@ -31,6 +43,11 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        liListe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                liListeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(liListe);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -52,6 +69,10 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void liListeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_liListeMouseClicked
+       
+    }//GEN-LAST:event_liListeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -90,6 +111,6 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<File> liListe;
+    private javax.swing.JList<Datei> liListe;
     // End of variables declaration//GEN-END:variables
 }
